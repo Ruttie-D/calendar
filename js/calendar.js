@@ -9,4 +9,6 @@ const next = document.querySelector('.next');
 
 calendarSetup();
 
-export { dayContainer, thisMonth }
+
+
+export { calendar, thisMonth, dayContainer, prev, next }

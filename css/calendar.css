@@ -135,6 +135,7 @@ body {
 
 .calendar .days .today {
     font-size: 2rem;
+    background-color: #b2d8b22e;
 }
 
 .calendar .days .event {
