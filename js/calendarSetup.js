@@ -29,9 +29,9 @@ function calendarSetup() {
 
     //setting the days of the previous month
     for (let i = day; i > 0; i--) {
-        setDay.classList.add('day', 'prev-date');
-        setDay.textContent = prevDays - i + 1;
-        dayContainer.appendChild(setDay);
+        // setDay.classList.add('day', 'prev-date');
+        // setDay.textContent = prevDays - i + 1;
+        // dayContainer.appendChild(setDay);
     }
 
     //setting the days of the current month
@@ -40,19 +40,19 @@ function calendarSetup() {
         // setDay.textContent = i;
 
         //today
-        if (i === currentDay) {
-            setDay.classList.add('day', 'today');
-        }
-
-        dayContainer.appendChild(setDay);
+        // if (i === currentDay) {
+        // setDay.classList.add('day', 'today');
     }
 
-    //setting the days of the next month
-    /* for (let i = 1; i <= nextDays; i++) {
-        setDay.classList.add('day, next-date');
-        setDay.textContent = i;
-        dayContainer.appendChild(setDay);
-    } */
+    // dayContainer.appendChild(setDay);
 }
+
+//setting the days of the next month
+/* for (let i = 1; i <= nextDays; i++) {
+    setDay.classList.add('day, next-date');
+    setDay.textContent = i;
+    dayContainer.appendChild(setDay);
+} */
+// }
 
 export { calendarSetup }
