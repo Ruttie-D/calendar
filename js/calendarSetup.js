@@ -1,49 +1,52 @@
-import { calendar, thisMonth, dayContainer, prev, next } from "./calendar.js";
+import { calendar, thisMonth, dayContainer, prev, next, months, today, currentDay, currentMonth, currentYear } from "./calendar.js";
 
+function calendarSetup(currentDay, currentMonth, currentYear) {
+    dayContainer.innerHTML = '';
 
-const months =
-    ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-let today = new Date();
-let activeDate;
-let currentDay = today.getDate();
-let currentMonth = today.getMonth();
-let currentYear = today.getFullYear();
-
-function calendarSetup() {
     // days of the previous month
     const prevLastDay = new Date(currentYear, currentMonth, 0);
-    const prevDays = prevLastDay.getDate();
+    const lastDateOfTheMonth = prevLastDay.getDate();
+    const lastWeekDayOfTheMonth = prevLastDay.getDay();
 
     //first day of the current month
     const firstDay = new Date(currentYear, currentMonth, 1);
     const day = firstDay.getDate();
 
-    //days of the next month
+    //last day of the current month
     const lastDay = new Date(currentYear, currentMonth + 1, 0);
     const lastDate = lastDay.getDate();
+    const lastWeekDay = lastDay.getDay();
 
-    //number of days remaining after the last day of the current month
-    const numberOfNextDays = 6 - lastDay.getDay();
+    //number of days of next month
+    const numberOfNextDays = 6 - lastWeekDay;
+    /*     console.log(`
+            current day: ${currentDay}; current month ${currentMonth}; current year ${currentYear};
+            days of the current month: ${lastDate};
+            the last date of the month ${lastDay}; the day of the week ${lastWeekDay + 1}
+            `); */
 
-    thisMonth.innerHTML = `${months[currentMonth]} ${currentYear}`;
+    thisMonth.innerHTML = `${months[currentMonth]} &nbsp&nbsp ${currentYear}`;
 
     //setting the days of the previous month
-    const setDay = document.createElement("div");
-    for (let i = day; i > 0; i--) {
-        setDay.classList.add('day', 'prev-date');
-        setDay.textContent = prevDays - i + 1;
-        dayContainer.appendChild(setDay);
+    if (lastWeekDayOfTheMonth !== 6) {
+        for (let i = lastWeekDayOfTheMonth; i >= 0; i--) {
+            const setDay = document.createElement("div");
+            setDay.classList.add('day', 'prev-date');
+            setDay.textContent = lastDateOfTheMonth - i;
+            dayContainer.appendChild(setDay);
+        }
     }
 
     //setting the days of the current month
     for (let i = 1; i <= lastDate; i++) {
         const setDay = document.createElement("div");
         setDay.classList.add('day');
+        setDay.setAttribute('day-id', i)
         setDay.textContent = i;
 
         // today
-        if (i === currentDay) {
+        const todayDate = new Date();
+        if (i === todayDate.getDay() && currentMonth === todayDate.getMonth() && currentYear === todayDate.getFullYear()) {
             setDay.classList.add('day', 'today');
         }
 
@@ -57,6 +60,7 @@ function calendarSetup() {
         setDay.textContent = i;
         dayContainer.appendChild(setDay);
     }
+
 }
 
 export { calendarSetup }

@@ -1,6 +1,7 @@
 :root {
     --primary-clr: #b38add;
     --secondary-clr: #b2d8b2;
+    --light-secondary-clr: #b2d8b22e;
 }
 
 * {
@@ -135,7 +136,12 @@ body {
 
 .calendar .days .today {
     font-size: 2rem;
-    background-color: #b2d8b22e;
+    background-color: var(--light-secondary-clr);
+}
+
+.calendar .days .chosen {
+    color: var(--secondary-clr);
+    background-color: var(--primary-clr);
 }
 
 .calendar .days .event {
@@ -168,14 +174,14 @@ body {
 }
 
 .calendar .goto-today {
-    width: 100%;
+    width: 98.5%;
     height: 5vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 0.5vh;
     padding: 0 2vh;
-    margin-bottom: 2vh;
+    margin: 0 auto 2vh;
     color: var(--secondary-clr);
 }
 

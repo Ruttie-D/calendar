@@ -24,9 +24,9 @@
         <div class="left">
             <div class="calendar">
                 <div class="month">
-                    <i class="fa-solid fa-angle-left fa-xl" style="color: #b38add;"></i>
+                    <i class="fa-solid fa-angle-left fa-xl prev-date" style="color: #b38add;"></i>
                     <div class="current-month"></div>
-                    <i class="fa-solid fa-angle-right fa-xl" style="color: #b38add;"></i>
+                    <i class="fa-solid fa-angle-right fa-xl next-date" style="color: #b38add;"></i>
                 </div>
 
                 <div class="week-days">
@@ -42,11 +42,18 @@
                 <div class="days"></div>
                 <div class="goto-today">
                     <div class="goto">
-                        <input type="date" placeholder="dd/mm/yyyy" class="date-input">
+                        <input type="text" placeholder="dd/mm/yyyy" format="dd/mm/yyy" class="date-input">
                         <button class="goto-btn">go</button>
                     </div>
                     <button class="today-btn">today</button>
                 </div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="today-date">
+                <div class="event-day"></div>
+                <div class="event-date"></div>
             </div>
         </div>
     </div>
