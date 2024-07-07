@@ -1,4 +1,4 @@
-import { calendar, thisMonth, dayContainer, prev, next, months, today, currentDay, currentMonth, currentYear } from "./calendar.js";
+import { thisMonth, dayContainer, months } from "./calendar.js";
 
 function calendarSetup(currentDay, currentMonth, currentYear) {
     dayContainer.innerHTML = '';
@@ -46,7 +46,7 @@ function calendarSetup(currentDay, currentMonth, currentYear) {
 
         // today
         const todayDate = new Date();
-        if (i === todayDate.getDay() && currentMonth === todayDate.getMonth() && currentYear === todayDate.getFullYear()) {
+        if (i === todayDate.getDate() && currentMonth === todayDate.getMonth() && currentYear === todayDate.getFullYear()) {
             setDay.classList.add('day', 'today');
         }
 
@@ -63,4 +63,4 @@ function calendarSetup(currentDay, currentMonth, currentYear) {
 
 }
 
-export { calendarSetup }
+export { calendarSetup };

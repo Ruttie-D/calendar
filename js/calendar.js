@@ -1,4 +1,5 @@
 import { calendarSetup } from "./calendarSetup.js";
+import { previousMonth, nextMonth, goToDate } from "./findDates.js"
 
 const calendar = document.querySelector('.calendar');
 const thisMonth = document.querySelector('.current-month');
@@ -19,52 +20,6 @@ let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
 
 calendarSetup(currentDay, currentMonth, currentYear);
-
-function previousMonth() {
-    currentMonth--;
-    if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
-    }
-    calendarSetup(currentDay, currentMonth, currentYear);
-}
-
-function nextMonth() {
-    currentMonth++;
-    if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-    }
-    calendarSetup(currentDay, currentMonth, currentYear);
-}
-
-function goToDate() {
-    const dateArr = dateInput.value.split("/");
-
-    if (dateArr.length === 3) {
-        if (dateArr[0] > 0 && dateArr[0] < 31 &&
-            dateArr[1] > 0 && dateArr[1] < 13 &&
-            dateArr[2].length === 4) {
-            calendarSetup(dateArr[0] - 1, dateArr[1] - 1, dateArr[2]);
-
-            let day = dateArr[0];
-            if (day.includes("0")) {
-                day = day.split("0").join("");
-            }
-            const chosenDate = document.querySelector(`[day-id="${day}"]`);
-            console.log(chosenDate);
-
-            chosenDate.classList.add("chosen");
-            setTimeout(() => {
-                chosenDate.classList.remove("chosen");
-                dateInput.value = "";
-            }, 3000);
-            return;
-        }
-    }
-    alert("Invalid Date");
-    dateInput.value = "";
-}
 
 prev.addEventListener('click', previousMonth);
 next.addEventListener('click', nextMonth);
@@ -109,4 +64,4 @@ todayBtn.addEventListener('click', () => {
     calendarSetup(day, month, year);
 });
 
-export { calendar, thisMonth, dayContainer, prev, next, months, today, currentDay, currentMonth, currentYear };
+export { thisMonth, dayContainer, months, currentDay, currentMonth, currentYear, dateInput };

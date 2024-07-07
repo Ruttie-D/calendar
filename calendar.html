@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar</title>
+    <link rel="icon" href="./svg/calendar-day-solid.svg">
     <link rel="stylesheet" href="./css/calendar.css">
     <!-- Icon Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -54,6 +55,31 @@
             <div class="today-date">
                 <div class="event-day"></div>
                 <div class="event-date"></div>
+            </div>
+
+            <div class="events"></div>
+
+            <div class="add-event-wrapper">
+                <div class="add-event-header">
+                    <div class="title">Add Event</div>
+                    <i class="fa-solid fa-xmark close" style="color: #b38add;"></i>
+                </div>
+
+                <div class="add-event-body">
+                    <div class="add-event-input">
+                        <input type="text" placeholder="Event Name:" class="event-name">
+                    </div>
+                    <div class="add-event-input">
+                        <input type="text" placeholder="Event Starts at:" class="event-start">
+                    </div>
+                    <div class="add-event-input">
+                        <input type="text" placeholder="Event Ends at:" class="event-end">
+                    </div>
+                </div>
+
+                <div class="add-event-footer">
+                    <button class="add-event-btn">Add Event</button>
+                </div>
             </div>
         </div>
     </div>
