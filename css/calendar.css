@@ -118,14 +118,14 @@ body {
     color: var(--off-color);
 }
 
-.calendar .days .active {
+.calendar .days .day.active {
     position: relative;
     font-size: 2rem;
     color: #fff;
     background-color: var(--primary-clr);
 }
 
-.calendar .days .active::before {
+.calendar .days .day.active::before {
     content: "";
     position: absolute;
     top: 0;
@@ -245,8 +245,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 4vh;
-    padding-left: 7vh;
-    margin: 5vh 0 2vh;
+    margin: 3vh 0 2vh;
     text-transform: capitalize;
 }
 
@@ -386,7 +385,7 @@ body {
 .add-event-header .close {
     padding: 0.5vh 0.5vh 0;
     font-size: 1.2rem;
-
+    cursor: pointer;
 }
 
 .add-event-body {
@@ -417,6 +416,10 @@ body {
     font-size: 1rem;
     font-weight: 400;
     color: var(--primary-clr);
+}
+
+.add-event-body .add-event-input .event-name {
+    text-transform: capitalize;
 }
 
 .add-event-body .add-event-input input::placeholder {
@@ -454,4 +457,28 @@ body {
 .add-event-btn:hover {
     color: var(--primary-clr);
     background-color: transparent;
+}
+
+.add-event {
+    position: absolute;
+    bottom: 4vh;
+    right: 4vh;
+    width: 4.5vw;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    background-color: transparent;
+    opacity: 0.5;
+    border: none;
+    cursor: pointer;
+}
+
+.add-event:hover {
+    opacity: 1;
+}
+
+.add-event i {
+    pointer-events: none;
 }

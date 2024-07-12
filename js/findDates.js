@@ -1,5 +1,11 @@
-import { currentDay, currentMonth, currentYear, dateInput } from "./calendar.js";
+import { dateInput } from "./calendar.js";
 import { calendarSetup } from "./calendarSetup.js";
+
+let date = new Date();
+let activeDate;
+export let currentDay = date.getDate();
+export let currentMonth = date.getMonth();
+export let currentYear = date.getFullYear();
 
 function previousMonth() {
     currentMonth--;

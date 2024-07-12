@@ -1,7 +1,16 @@
-import { thisMonth, dayContainer, months } from "./calendar.js";
+import { thisMonth, dayContainer, days, months, eventDay, eventDate } from "./calendar.js";
+import { addEventListeners } from "./events.js";
+
+let prevMonthDays = [];
+let currentMonthDays = [];
+let nextMonthDays = [];
 
 function calendarSetup(currentDay, currentMonth, currentYear) {
+    //reset
     dayContainer.innerHTML = '';
+    prevMonthDays.length = 0;
+    currentMonthDays.length = 0;
+    nextMonthDays.length = 0;
 
     // days of the previous month
     const prevLastDay = new Date(currentYear, currentMonth, 0);
@@ -10,7 +19,7 @@ function calendarSetup(currentDay, currentMonth, currentYear) {
 
     //first day of the current month
     const firstDay = new Date(currentYear, currentMonth, 1);
-    const day = firstDay.getDate();
+    // const day = firstDay.getDate();
 
     //last day of the current month
     const lastDay = new Date(currentYear, currentMonth + 1, 0);
@@ -34,11 +43,15 @@ function calendarSetup(currentDay, currentMonth, currentYear) {
             setDay.classList.add('day', 'prev-date');
             setDay.textContent = lastDateOfTheMonth - i;
             dayContainer.appendChild(setDay);
+            prevMonthDays.push(setDay);
         }
     }
 
     //setting the days of the current month
     for (let i = 1; i <= lastDate; i++) {
+
+        //check for events on current day
+
         const setDay = document.createElement("div");
         setDay.classList.add('day');
         setDay.setAttribute('day-id', i)
@@ -51,6 +64,7 @@ function calendarSetup(currentDay, currentMonth, currentYear) {
         }
 
         dayContainer.appendChild(setDay);
+        currentMonthDays.push(setDay);
     }
 
     //setting the days of the next month
@@ -59,8 +73,9 @@ function calendarSetup(currentDay, currentMonth, currentYear) {
         setDay.classList.add('day', 'next-date');
         setDay.textContent = i;
         dayContainer.appendChild(setDay);
+        nextMonthDays.push(setDay);
     }
-
+    addEventListeners(currentMonth, currentYear, prevMonthDays, currentMonthDays, nextMonthDays);
 }
 
-export { calendarSetup };
+export { calendarSetup, prevMonthDays, currentMonthDays, nextMonthDays };
