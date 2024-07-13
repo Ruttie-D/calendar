@@ -1,5 +1,6 @@
 import { days, months, eventDay, eventDate, eventDays } from './calendar.js'
-import { previousMonth, nextMonth } from './findDates.js';
+import { currentMonthDays } from './calendarSetup.js';
+import { previousMonth, nextMonth, currentMonth } from './findDates.js';
 // import { prevMonthDays, currentMonthDays, nextMonthDays } from './calendarSetup.js';
 
 class EventDay {
@@ -29,17 +30,12 @@ function addEventListeners(currentMonth, currentYear, prevMonthDays, currentMont
         day.addEventListener('click', (e) => {
             previousMonth();
 
-            currentMonthDays.forEach(day => {
-                if (day.innerText === e.target.innerText) {
-                    day.classList.add('active');
-                    console.log(e.target.innerText, day.classList);
-                }
-            });
             const day = e.target.innerText;
-            const month = months[currentMonth - 1];
-            const year = currentYear;
+            const month = currentMonth - 1 < 0 ? months[11] : months[currentMonth - 1];
+            const year = currentMonth - 1 < 0 ? currentYear - 1 : currentYear;
             const weekday = days[new Date(year, currentMonth - 1, day).getDay()];
             title(weekday, day, month, year);
+            activeDisplay(day);
         });
     });
 
@@ -47,10 +43,11 @@ function addEventListeners(currentMonth, currentYear, prevMonthDays, currentMont
         day.addEventListener('click', (e) => {
             nextMonth();
 
+            const month = currentMonth + 1 > 11 ? months[0] : months[currentMonth + 1];
+            const year = currentMonth + 1 > 11 ? currentYear + 1 : currentYear;
             e.target.classList.add('active');
             const day = e.target.innerText;
-            const month = months[currentMonth + 1];
-            const year = currentYear;
+
             const weekday = days[new Date(year, currentMonth + 1, day).getDay()];
             title(weekday, day, month, year);
         });
@@ -75,6 +72,17 @@ function title(weekday, day, month, year) {
     eventDate.innerHTML = ``;
     eventDay.innerHTML = weekday;
     eventDate.innerHTML = `${day} &nbsp ${month} &nbsp ${year}`;
+}
+
+function activeDisplay(dayToActive) {
+    console.log(dayToActive);
+    currentMonthDays.forEach(day => {
+        if (day?.getAttribute('day-id') === dayToActive) {
+            console.log(day?.getAttribute('day-id') === dayToActive);
+            day.className += ' active';
+            console.log(day, day.classList);
+        }
+    });
 }
 
 function addEventToDay(day, month, year, title, timeStart, timeEnd) {
